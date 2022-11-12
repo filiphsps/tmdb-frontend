@@ -8,6 +8,7 @@ const config = {
     reactStrictMode: true,
     trailingSlash: true,
     swcMinify: true,
+    pageExtensions: ['page.tsx'],
 
     compiler: {
         styledComponents: true,

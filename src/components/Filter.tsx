@@ -6,11 +6,11 @@ const Container = styled.span`
     align-items: center;
     justify-content: center;
     height: 4rem;
-    width: calc(100vw - 2rem);
+    width: 100%;
     padding: 0px 1.5rem 0px 1rem;
     margin-bottom: 1rem;
     background: rgb(var(--color-secondary));
-    box-shadow: 0.35rem 0.35rem 0px 0px rgb(var(--color-primary-light));
+    box-shadow: 0.25rem 0.25rem 0px 0px rgb(var(--color-primary));
 `;
 
 interface FilterProps {}

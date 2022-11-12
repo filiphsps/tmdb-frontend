@@ -53,8 +53,8 @@ const Cover = styled(Image)`
 const Position = styled.div`
     z-index: 2;
     position: absolute;
-    bottom: 0.45rem;
-    left: 0.45rem;
+    bottom: 0.75rem;
+    left: 0.75rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,6 +67,8 @@ const Position = styled.div`
     aspect-ratio: 1 / 1;
     background: rgb(var(--color-primary));
     border-radius: 100%;
+    transition: var(--transition);
+    transition-timing-function: cubic-bezier(1, -0.1, 0.3, 0.65);
 
     span {
         transform: scale(0.75);
@@ -85,6 +87,11 @@ const Position = styled.div`
         }
     }
 `;
+const Rating = styled(Position)`
+    background: rgb(var(--color-secondary));
+    transform: translateX(-175%);
+    transition-delay: 0s;
+`;
 
 const Action = styled(Position)`
     position: absolute;
@@ -96,8 +103,7 @@ const Action = styled(Position)`
     background: unset;
     border-radius: unset;
     transition: var(--transition);
-    transition-timing-function: cubic-bezier(1, -0.1, 0.3, 0.65);
-    transform: translateX(125%);
+    transform: translateX(-500%);
 
     span {
         display: block;
@@ -109,8 +115,8 @@ const Action = styled(Position)`
 `;
 
 const expandedStyle = css`
-    box-shadow: 0.35rem 0.35rem 0px 0px rgb(var(--color-primary));
-    --color-stroke: var(--color-primary);
+    box-shadow: 0.25rem 0.25rem 0px 0px rgb(var(--color-secondary));
+    --color-blur-background: var(--color-primary);
 
     ${Cover} {
         transition-timing-function: cubic-bezier(1, -0.1, 0.3, 0.65);
@@ -123,18 +129,32 @@ const expandedStyle = css`
     }
     ${Content} {
         transform: translateX(0);
+        transition-delay: 350ms;
     }
 
     ${Position} {
-        background: rgb(var(--color-secondary));
+        transform: translateX(-175%);
+    }
+    ${Rating} {
+        transform: translateX(0);
+        transition-delay: 150ms;
     }
     ${Action} {
         background: unset;
         transform: translateX(0);
+        transition: 400ms cubic-bezier(1, -0.1, 0.3, 0.65);
+        transition-delay: 75ms;
+    }
+
+    @media (min-width: 960px) {
+        &:hover {
+            box-shadow: 0.25rem 0.25rem 0px 0px rgb(var(--color-secondary));
+            transform: none;
+        }
     }
 `;
 const Container = styled.div`
-    --color-stroke: var(--color-secondary);
+    --color-blur-background: var(--color-secondary);
     position: relative;
     display: block;
     width: 100%;
@@ -149,7 +169,13 @@ const Container = styled.div`
     background-position: center center;
     cursor: pointer;
 
-    box-shadow: 0.35rem 0.35rem 0px 0px rgb(var(--color-secondary));
+    box-shadow: 0.25rem 0.25rem 0px 0px rgb(var(--color-primary));
+    @media (min-width: 960px) {
+        &:hover {
+            box-shadow: 0.45rem 0.45rem 0px 0px rgb(var(--color-primary));
+            transform: translate(-0.15rem, -0.15rem);
+        }
+    }
 
     ${({ expanded }: { expanded?: boolean }) => (expanded ? expandedStyle : '')}
 `;
@@ -171,7 +197,7 @@ export const Item: FunctionComponent<ItemProps> = ({ data, position }) => {
     const title = data.title || (data as any).name;
     const isSeries = data.video === undefined ? true : data.video;
     const href = `/${isSeries ? 'tv' : 'movie'}/${data.id}`;
-    const excerptLength = 125;
+    const excerptLength = 78;
 
     return (
         <Container
@@ -184,7 +210,18 @@ export const Item: FunctionComponent<ItemProps> = ({ data, position }) => {
             }}
         >
             <Title>
-                <Label size={48} mobileSize={32}>
+                <Label
+                    options={{
+                        size: 48,
+                        stroke: 0.85,
+                        offset: 2.5
+                    }}
+                    mobileOptions={{
+                        size: 32,
+                        stroke: 0.55,
+                        offset: 2
+                    }}
+                >
                     {title}
                 </Label>
             </Title>
@@ -195,7 +232,18 @@ export const Item: FunctionComponent<ItemProps> = ({ data, position }) => {
                 alt={title}
             />
             <Content>
-                <Label size={28} mobileSize={16}>
+                <Label
+                    options={{
+                        size: 32,
+                        stroke: 0.65,
+                        offset: 1.5
+                    }}
+                    mobileOptions={{
+                        size: 21,
+                        stroke: 0.45,
+                        offset: 1.75
+                    }}
+                >
                     {`${data.overview.substring(0, excerptLength)}${
                         data.overview.length > excerptLength ? '...' : ''
                     }`}
@@ -203,11 +251,47 @@ export const Item: FunctionComponent<ItemProps> = ({ data, position }) => {
             </Content>
             {position && (
                 <Position>
-                    <Label size={122} mobileSize={52}>{`${position}.`}</Label>
+                    <Label
+                        options={{
+                            size: 122,
+                            stroke: 2,
+                            offset: 5
+                        }}
+                        mobileOptions={{
+                            size: 52,
+                            stroke: 0.75,
+                            offset: 2.5
+                        }}
+                    >{`${position}.`}</Label>
                 </Position>
             )}
+            <Rating>
+                <Label
+                    options={{
+                        size: 48,
+                        stroke: 0.85,
+                        offset: 2.75
+                    }}
+                    mobileOptions={{
+                        size: 32,
+                        stroke: 0.75,
+                        offset: 2.15
+                    }}
+                >{`${data.vote_average * 10}%`}</Label>
+            </Rating>
             <Action>
-                <Label size={82} mobileSize={42}>
+                <Label
+                    options={{
+                        size: 82,
+                        stroke: 1.5,
+                        offset: 4.5
+                    }}
+                    mobileOptions={{
+                        size: 42,
+                        stroke: 0.75,
+                        offset: 2.5
+                    }}
+                >
                     ➜
                 </Label>
             </Action>

@@ -2,36 +2,43 @@ import styled, { css } from 'styled-components';
 
 import { FunctionComponent } from 'react';
 
+interface Style {
+    size: number;
+    stroke: number;
+    offset: number;
+}
+
 const String = styled.span`
     ${({
-        size,
-        mobileSize
+        options,
+        mobileOptions
     }: {
-        size: number;
-        mobileSize?: number;
-        secondary?: boolean;
+        options: Style;
+        mobileOptions?: Style;
     }) => {
-        let stroke = 0.0075;
-        let offset = 0.065;
-
         return css`
-            font-size: ${size}px;
+            font-size: ${options.size}px;
             font-weight: 800;
 
-            -webkit-text-stroke-width: ${size * stroke}px;
-            -webkit-text-stroke-color: #2f2f2f;
-            text-shadow: ${size * offset}px ${size * offset}px
-                rgb(var(--color-stroke));
+            -webkit-text-stroke-width: ${options.stroke}px;
+            -webkit-text-stroke-color: #1f1f1f;
+            text-shadow: ${options.offset * 1.05}px ${options.offset}px
+                    rgb(var(--color-blur-background)),
+                ${options.offset * 1.05}px ${options.offset}px 25px
+                    rgba(var(--color-blur-background), 0.25);
             color: transparent;
 
             @media (max-width: 960px) {
-                ${mobileSize > 0
+                ${mobileOptions != undefined
                     ? css`
-                          font-size: ${mobileSize}px;
-                          -webkit-text-stroke-width: ${mobileSize * stroke +
-                          0.25}px;
-                          text-shadow: ${mobileSize * offset}px
-                              ${mobileSize * offset}px rgb(var(--color-stroke));
+                          font-size: ${mobileOptions.size}px;
+                          -webkit-text-stroke-width: ${mobileOptions.stroke}px;
+                          text-shadow: ${mobileOptions.offset * 1.05}px
+                                  ${mobileOptions.offset}px
+                                  rgb(var(--color-blur-background)),
+                              ${mobileOptions.offset * 1.05}px
+                                  ${mobileOptions.offset}px 25px
+                                  rgba(var(--color-blur-background), 0.25);
                       `
                     : ''}
             }
@@ -41,17 +48,16 @@ const String = styled.span`
 
 interface TextProps {
     children: string;
-    size?: number;
-    mobileSize?: number;
-    secondary?: boolean;
+    options: Style;
+    mobileOptions?: Style;
 }
 export const Text: FunctionComponent<TextProps> = ({
     children,
-    size,
-    mobileSize
+    options,
+    mobileOptions
 }) => {
     return (
-        <String size={size || 14} mobileSize={mobileSize}>
+        <String options={options} mobileOptions={mobileOptions}>
             {children}
         </String>
     );

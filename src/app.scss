@@ -2,7 +2,8 @@ body {
     --color-primary: 246, 42, 160;
     --color-primary-light: 255, 241, 159;
     --color-secondary: 38, 223, 208;
-    --color-stroke: var(--color-primary);
+    --color-blur-background: var(--color-primary);
+    --page-width: 1512px;
     --transition: 250ms ease-in-out;
 
     overflow-x: hidden;

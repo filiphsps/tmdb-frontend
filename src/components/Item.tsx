@@ -149,7 +149,6 @@ const expandedStyle = css`
     @media (min-width: 960px) {
         &:hover {
             box-shadow: 0.25rem 0.25rem 0px 0px rgb(var(--color-secondary));
-            transform: none;
         }
     }
 `;
@@ -240,7 +239,7 @@ export const Item: FunctionComponent<ItemProps> = ({ data, position }) => {
                     }}
                     mobileOptions={{
                         size: 21,
-                        stroke: 0.45,
+                        stroke: 0,
                         offset: 1.75
                     }}
                 >

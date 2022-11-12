@@ -21,11 +21,9 @@ const String = styled.span`
             font-weight: 800;
 
             -webkit-text-stroke-width: ${options.stroke}px;
-            -webkit-text-stroke-color: #1f1f1f;
+            -webkit-text-stroke-color: rgb(var(--color-stroke));
             text-shadow: ${options.offset * 1.05}px ${options.offset}px
-                    rgb(var(--color-blur-background)),
-                ${options.offset * 1.05}px ${options.offset}px 25px
-                    rgba(var(--color-blur-background), 0.25);
+                rgb(var(--color-blur-background));
             color: transparent;
 
             @media (max-width: 960px) {
@@ -34,11 +32,8 @@ const String = styled.span`
                           font-size: ${mobileOptions.size}px;
                           -webkit-text-stroke-width: ${mobileOptions.stroke}px;
                           text-shadow: ${mobileOptions.offset * 1.05}px
-                                  ${mobileOptions.offset}px
-                                  rgb(var(--color-blur-background)),
-                              ${mobileOptions.offset * 1.05}px
-                                  ${mobileOptions.offset}px 25px
-                                  rgba(var(--color-blur-background), 0.25);
+                              ${mobileOptions.offset}px
+                              rgb(var(--color-blur-background));
                       `
                     : ''}
             }

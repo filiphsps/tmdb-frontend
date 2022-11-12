@@ -9,27 +9,6 @@ import styled from 'styled-components';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import waves from '../img/header.svg';
 
-const Container = styled.header`
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    height: 4rem;
-    width: calc(100vw - 2rem);
-    max-width: var(--page-width);
-    margin: 0px auto 0.5rem auto;
-
-    @media (max-width: 960px) {
-        --color-blur-background: var(--color-secondary);
-        height: 3rem;
-    }
-
-    a {
-        display: block;
-    }
-`;
-
 const Logo = styled(Link)`
     display: block;
 `;
@@ -44,12 +23,9 @@ const Actions = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    gap: 0.5rem;
     height: 2rem;
     margin: 0.25rem 0px;
-
-    color: rgb(var(--color-primary));
-    background: rgb(var(--color-secondary));
-    box-shadow: 0.25rem 0.25rem 0px 0px rgb(var(--color-primary));
 
     @media (min-width: 960px) {
         height: 2.5rem;
@@ -63,21 +39,41 @@ const Action = styled.div`
     height: 100%;
     width: 2rem;
     max-width: 2rem;
-    aspect-ratio: 1 / 1;
     line-height: 100%;
     font-size: 1.25rem;
     cursor: pointer;
     transition: var(--transition);
 
+    color: rgb(var(--color-primary));
+    background: rgb(var(--color-secondary));
+    box-shadow: 0.25rem 0.25rem 0px 0px rgb(var(--color-primary));
+
+    @media (max-width: 960px) {
+        aspect-ratio: 1 / 1;
+    }
+
     @media (min-width: 960px) {
-        width: 2.5rem;
-        max-width: 2.5rem;
+        width: auto;
+        max-width: 100%;
+        padding: 0px 0.5rem;
         font-size: 1.75rem;
     }
 
     &:hover {
         color: rgb(var(--color-primary));
         background: rgb(var(--color-primary-light));
+    }
+`;
+
+const Label = styled.div`
+    display: none;
+
+    @media (min-width: 960px) {
+        display: block;
+        padding: 0px 0px 0px 0.5rem;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
     }
 `;
 
@@ -99,6 +95,27 @@ const ImageContainer = styled.div`
         @media (max-width: 960px) {
             width: auto;
         }
+    }
+`;
+
+const Container = styled.header`
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 4rem;
+    width: calc(100vw - 2rem);
+    max-width: var(--page-width);
+    margin: 0px auto 0.5rem auto;
+
+    @media (max-width: 960px) {
+        --color-blur-background: var(--color-secondary);
+        height: 3rem;
+    }
+
+    a {
+        display: block;
     }
 `;
 
@@ -138,6 +155,7 @@ export const Header: FunctionComponent<HeaderProps> = ({}) => {
                     <SearchBar />
                     <Action>
                         <HiMenuAlt3 />
+                        <Label>Menu</Label>
                     </Action>
                 </Actions>
             </Container>

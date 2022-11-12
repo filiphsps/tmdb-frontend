@@ -60,6 +60,10 @@ const Container = styled.div`
     max-width: calc(100% - 2rem);
     transition: var(--transition);
 
+    color: rgb(var(--color-primary));
+    background: rgb(var(--color-secondary));
+    box-shadow: 0.25rem 0.25rem 0px 0px rgb(var(--color-primary));
+
     @media (min-width: 960px) {
         width: 2.5rem;
         height: 2.5rem;
@@ -90,7 +94,7 @@ const Container = styled.div`
                       border-left-width: 0.15rem;
 
                       @media (min-width: 960px) {
-                          max-width: 14rem;
+                          max-width: 16rem;
                           border-left-width: 0.2rem;
                       }
                   }

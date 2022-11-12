@@ -1,19 +1,77 @@
+import { HiOutlineFilter, HiSortDescending } from 'react-icons/hi';
+
+import { BiCategoryAlt } from 'react-icons/bi';
 import { FunctionComponent } from 'react';
+import { Pill } from './Pill';
 import styled from 'styled-components';
 
-const Container = styled.span`
+const Pills = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    @media (min-width: 960px) {
+        gap: 1rem;
+    }
+
+    & > div {
+        flex-grow: 1;
+        font-size: 0.75rem;
+        height: auto;
+        padding: 0.25rem;
+        gap: 0.25rem;
+
+        @media (min-width: 960px) {
+            height: 1.75rem;
+            padding: 0.5rem 0.75rem;
+            font-size: 1.25rem;
+            flex-grow: 0;
+        }
+    }
+`;
+
+const Container = styled.div`
     display: grid;
-    align-items: center;
-    justify-content: center;
-    height: 4rem;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
     width: 100%;
-    padding: 0px 1.5rem 0px 1rem;
-    margin-bottom: 1rem;
-    background: rgb(var(--color-secondary));
-    box-shadow: 0.25rem 0.25rem 0px 0px rgb(var(--color-primary));
+    max-width: 100%;
+    min-height: 2rem;
+    margin-bottom: 1.5rem;
 `;
 
 interface FilterProps {}
 export const Filter: FunctionComponent<FilterProps> = ({}) => {
-    return <Container></Container>;
+    return (
+        <Container>
+            <Pills>
+                <Pill>
+                    <span>Movies</span>
+                    <HiOutlineFilter />
+                </Pill>
+                <Pill>
+                    <span>Popular</span>
+                    <HiSortDescending />
+                </Pill>
+                <Pill>
+                    <span>Action</span>
+                    <BiCategoryAlt />
+                </Pill>
+                <Pill>
+                    <span>Comedy</span>
+                    <BiCategoryAlt />
+                </Pill>
+                <Pill>
+                    <span>Family</span>
+                    <BiCategoryAlt />
+                </Pill>
+            </Pills>
+            <Pill primary onClick={() => {}}>
+                <span>Filters</span>
+                <HiOutlineFilter />
+            </Pill>
+        </Container>
+    );
 };

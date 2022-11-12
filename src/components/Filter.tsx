@@ -18,7 +18,7 @@ const Pills = styled.div`
 
     & > div {
         flex-grow: 1;
-        font-size: 0.75rem;
+        font-size: 1rem;
         height: 1.75rem;
         padding: 0.25rem;
         gap: 0.25rem;

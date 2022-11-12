@@ -7,7 +7,8 @@
         "start": "next start -p $PORT",
         "test": "npm-run-all test:*",
         "test:jest": "jest",
-        "test:lint": "next lint"
+        "test:lint": "next lint",
+        "prepare": "husky install"
     },
     "cacheDirectories": [
         ".next/"
@@ -22,6 +23,7 @@
         "eslint": "8.27.0",
         "eslint-config-next": "13.0.2",
         "eslint-config-prettier": "8.5.0",
+        "husky": "8.0.2",
         "jest": "29.3.1",
         "jest-environment-jsdom": "29.3.1",
         "npm-run-all": "4.1.5",

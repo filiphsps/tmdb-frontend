@@ -19,12 +19,11 @@ const Pills = styled.div`
     & > div {
         flex-grow: 1;
         font-size: 0.75rem;
-        height: auto;
+        height: 1.75rem;
         padding: 0.25rem;
         gap: 0.25rem;
 
         @media (min-width: 960px) {
-            height: 1.75rem;
             padding: 0.5rem 0.75rem;
             font-size: 1.25rem;
             flex-grow: 0;

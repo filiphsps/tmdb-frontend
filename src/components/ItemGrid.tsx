@@ -9,6 +9,7 @@ const Grid = styled.div`
     justify-content: center;
     align-items: center;
     max-width: 100%;
+    margin-bottom: 1rem;
 
     @media (min-width: 960px) {
         grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));

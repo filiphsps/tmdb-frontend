@@ -10,6 +10,7 @@ import { FunctionComponent } from 'react';
 import { Item } from '../../components/Item';
 import { ItemGrid } from '../../components/ItemGrid';
 import { Page } from '../../components/Page';
+import { Paginator } from '../../components/Paginator';
 
 interface OverviewProps {
     data: PopularMoviesResponse | TvResultsResponse;
@@ -23,6 +24,7 @@ const Overview: FunctionComponent<OverviewProps> = ({ data }) => {
                     <Item key={item.id} data={item} position={index + 1} />
                 ))}
             </ItemGrid>
+            <Paginator />
         </Page>
     );
 };

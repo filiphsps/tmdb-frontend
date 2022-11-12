@@ -140,8 +140,41 @@ exports[`pages Overview renders unchanged 1`] = `
       </div>
     </div>
     <div
-      class="sc-d110845e-0 dgogid"
+      class="sc-b37042d5-0 kBjBnI"
     />
+    <div
+      class="sc-eb4bd80f-0 jJpjyD"
+    >
+      <div
+        class="sc-3b4d623-0 hzgGtd"
+      >
+        Back
+      </div>
+      <div
+        class="sc-eb4bd80f-1 cfKpnI"
+      >
+        <div
+          class="sc-3b4d623-0 hzgGtd"
+        >
+          1
+        </div>
+        <div
+          class="sc-3b4d623-0 haJmtz"
+        >
+          2
+        </div>
+        <div
+          class="sc-3b4d623-0 haJmtz"
+        >
+          3
+        </div>
+      </div>
+      <div
+        class="sc-3b4d623-0 hzgGtd"
+      >
+        Next
+      </div>
+    </div>
   </main>
 </div>
 `;

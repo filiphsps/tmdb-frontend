@@ -1,0 +1,27 @@
+name: Build & CI Test
+on: [push]
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: 📂 Checkout
+              uses: actions/checkout@v3
+
+            - name: 🔧 Configure node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 19
+
+            - name: 📦 Install dependencies
+              run: npm install
+
+            - name: ⚙️ Build everything
+              run: npm run build
+              env:
+                  tmdb_token: ${{ secrets.TMDB_TOKEN }}
+
+            - name: 🧪 Run test(s)
+              run: npm run test
+              env:
+                  tmdb_token: ${{ secrets.TMDB_TOKEN }}

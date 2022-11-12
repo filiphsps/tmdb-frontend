@@ -12,7 +12,7 @@ const Container = styled.div`
     background: rgb(var(--color-secondary));
     box-shadow: 0.25rem 0.25rem 0px 0px rgb(var(--color-primary));
     text-transform: uppercase;
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: 700;
 
     svg {

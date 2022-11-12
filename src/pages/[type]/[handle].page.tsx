@@ -5,7 +5,12 @@ import { Page } from '../../components/Page';
 
 interface ItemPageProps {}
 const ItemPage: FunctionComponent<ItemPageProps> = ({}) => {
-    return <Page>hello world</Page>;
+    return (
+        <Page>
+            hello world
+            <div style={{ paddingBottom: '400vh' }} />
+        </Page>
+    );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

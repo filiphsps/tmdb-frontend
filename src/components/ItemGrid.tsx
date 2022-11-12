@@ -11,7 +11,7 @@ const Grid = styled.div`
     max-width: 100%;
 
     @media (min-width: 960px) {
-        grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     }
 `;
 

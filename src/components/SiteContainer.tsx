@@ -1,10 +1,14 @@
 import type { FunctionComponent, ReactNode } from 'react';
 
+import { Footer } from './Footer';
 import { Header } from './Header';
 import styled from 'styled-components';
 
 const Container = styled.div`
+    z-index: 1;
+    position: relative;
     overflow-x: hidden;
+    background: #efefef;
 `;
 
 interface SiteContainerProps {
@@ -17,6 +21,7 @@ export const SiteContainer: FunctionComponent<SiteContainerProps> = ({
         <Container>
             <Header />
             {children}
+            <Footer />
         </Container>
     );
 };

@@ -5,6 +5,7 @@ import {
     TvResultsResponse
 } from 'moviedb-promise';
 
+import { Filter } from '../../components/Filter';
 import { FunctionComponent } from 'react';
 import { Item } from '../../components/Item';
 import { ItemGrid } from '../../components/ItemGrid';
@@ -16,6 +17,7 @@ interface OverviewProps {
 const Overview: FunctionComponent<OverviewProps> = ({ data }) => {
     return (
         <Page>
+            <Filter />
             <ItemGrid>
                 {data.results.map((item, index) => (
                     <Item key={item.id} data={item} position={index + 1} />

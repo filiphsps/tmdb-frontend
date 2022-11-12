@@ -11,7 +11,10 @@ const config = {
     pageExtensions: ['page.tsx'],
 
     compiler: {
-        styledComponents: true,
+        styledComponents: true
+    },
+    images: {
+        domains: ['image.tmdb.org']
     },
 
     async redirects() {
@@ -20,9 +23,9 @@ const config = {
                 source: '/',
                 destination: '/movie',
                 permanent: false
-            },
+            }
         ];
-    },
+    }
 };
 
 module.exports = config;

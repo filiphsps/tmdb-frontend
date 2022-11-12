@@ -3,6 +3,7 @@ import '../app.scss';
 
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { SiteContainer } from '../components/SiteContainer';
 import { useRouter } from 'next/router';
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -16,7 +17,9 @@ const App = ({ Component, pageProps }: AppProps) => {
                     content="width=device-width, initial-scale=1, user-scalable=no"
                 />
             </Head>
-            <Component key={router.asPath} {...pageProps} />
+            <SiteContainer>
+                <Component key={router.asPath} {...pageProps} />
+            </SiteContainer>
         </>
     );
 };

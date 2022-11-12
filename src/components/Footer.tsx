@@ -18,10 +18,13 @@ const ImageContainer = styled.div`
     width: 100vw;
     z-index: -1;
     filter: brightness(0.85);
+    transition: 100ms ease-out;
+    transform: translateY(0);
 
     #waves {
         height: 100%;
         width: 100vw;
+        margin-left: -0.25rem;
         object-fit: cover;
 
         @media (max-width: 960px) {

@@ -13,7 +13,7 @@ const Grid = styled.div`
 
     @media (min-width: 960px) {
         gap: 2rem 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
     }
 `;
 

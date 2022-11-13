@@ -15,7 +15,7 @@ const Title = styled.div`
     align-items: flex-start;
     width: 100%;
     height: 100%;
-    padding: 0.5rem 0.15rem;
+    padding: 0.75rem 0px 0.75rem 0.75rem;
     color: rgb(var(--color-secondary));
     text-shadow: -0.125rem -0.125rem 0 rgb(var(--color-primary)),
         0 -0.125rem 0 rgb(var(--color-primary)),
@@ -25,13 +25,14 @@ const Title = styled.div`
         0 0.125rem 0 rgb(var(--color-primary)),
         -0.125rem 0.125rem 0 rgb(var(--color-primary)),
         -0.125rem 0 0 rgb(var(--color-primary));
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 700;
     overflow-wrap: break-word;
     transition: var(--transition);
+    transform: translate(-0.25rem, -0.75rem);
 
     @media (min-width: 960px) {
-        font-size: 1.75rem;
+        font-size: 1.25rem;
     }
 `;
 const Content = styled.div`
@@ -42,9 +43,10 @@ const Content = styled.div`
     left: 0px;
     width: 100%;
     height: 100%;
-    padding: 0.5rem;
+    padding: 0.75rem;
     transition: var(--transition);
     transform: translateX(-100%);
+    --color-blur-background: var(--color-primary);
 
     span {
         overflow-wrap: break-word;
@@ -61,11 +63,24 @@ const Cover = styled(Image)`
     transition: 100ms ease-out;
 `;
 
+const PositionContainer = styled.div`
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 1.75rem;
+
+    @media (max-width: 960px) {
+        padding: 1rem;
+    }
+`;
 const Position = styled.div`
     z-index: 2;
-    position: absolute;
-    bottom: 0.75rem;
-    left: 0.75rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,7 +97,7 @@ const Position = styled.div`
     transition-timing-function: cubic-bezier(1, -0.1, 0.3, 0.65);
 
     span {
-        transform: scale(0.75);
+        transform: scale(0.65);
     }
 
     @media (min-width: 960px) {
@@ -100,8 +115,14 @@ const Position = styled.div`
 `;
 const Rating = styled(Position)`
     background: rgb(var(--color-secondary));
-    transform: translateX(-175%);
+    transform: translateX(-20rem);
     transition-delay: 0s;
+    margin: -1rem;
+    --color-blur-background: var(--color-primary);
+
+    @media (max-width: 960px) {
+        margin: 0px;
+    }
 `;
 
 const Action = styled(Position)`
@@ -114,7 +135,9 @@ const Action = styled(Position)`
     background: unset;
     border-radius: unset;
     transition: var(--transition);
-    transform: translateX(-500%);
+    transform: translateX(-20rem);
+    margin: -1rem 0.5rem -1rem -1rem;
+    --color-blur-background: var(--color-primary);
 
     span {
         display: block;
@@ -123,11 +146,13 @@ const Action = styled(Position)`
     @media (min-width: 960px) {
         height: 4rem;
     }
+    @media (max-width: 960px) {
+        margin: 0px 0.5rem 0px 0px;
+    }
 `;
 
 const expandedStyle = css`
     box-shadow: 0.25rem 0.25rem 0px 0px rgb(var(--color-secondary));
-    --color-blur-background: var(--color-primary);
 
     ${Cover} {
         transition-timing-function: cubic-bezier(1, -0.1, 0.3, 0.65);
@@ -144,7 +169,7 @@ const expandedStyle = css`
     }
 
     ${Position} {
-        transform: translateX(-175%);
+        transform: translateX(-20rem);
     }
     ${Rating} {
         transform: translateX(0);
@@ -197,7 +222,29 @@ const Label = styled(Text)`
 const Wrapper = styled.div`
     display: grid;
     grid-template-rows: auto 1fr;
+    gap: 1rem;
     height: 100%;
+    transition: var(--transition);
+
+    ${({ expanded }: { expanded?: boolean }) =>
+        expanded
+            ? css`
+                  gap: 0.5rem;
+
+                  ${Title} {
+                      padding: 0.75rem 0px 0.75rem 0.75rem;
+                      background: rgb(var(--color-primary));
+                      box-shadow: 0.25rem 0.25rem 0px 0px
+                          rgb(var(--color-secondary));
+
+                      font-size: 1.25rem;
+                      transform: none;
+                      @media (min-width: 960px) {
+                          font-size: 1.5rem;
+                      }
+                  }
+              `
+            : ''}
 `;
 
 interface ItemProps {
@@ -213,10 +260,10 @@ export const Item: FunctionComponent<ItemProps> = ({ data, position }) => {
     const title = data.title || (data as any).name;
     const isSeries = data.video === undefined ? true : data.video;
     const href = `/${isSeries ? 'tv' : 'movie'}/${data.id}`;
-    const excerptLength = 78;
+    const excerptLength = 72;
 
     return (
-        <Wrapper>
+        <Wrapper expanded={taps > 0}>
             <Container
                 ref={ref}
                 expanded={taps > 0}
@@ -235,12 +282,12 @@ export const Item: FunctionComponent<ItemProps> = ({ data, position }) => {
                 <Content>
                     <Label
                         options={{
-                            size: 32,
+                            size: 30,
                             stroke: 0.65,
                             offset: 1.5
                         }}
                         mobileOptions={{
-                            size: 21,
+                            size: 18,
                             stroke: 0.65,
                             offset: 1.5
                         }}
@@ -250,52 +297,59 @@ export const Item: FunctionComponent<ItemProps> = ({ data, position }) => {
                         }`}
                     </Label>
                 </Content>
+
                 {position && (
-                    <Position>
+                    <PositionContainer>
+                        <Position>
+                            <Label
+                                options={{
+                                    size: 122,
+                                    stroke: 2,
+                                    offset: 5
+                                }}
+                                mobileOptions={{
+                                    size: 56,
+                                    stroke: 0.75,
+                                    offset: 2.75
+                                }}
+                            >{`${position}.`}</Label>
+                        </Position>
+                    </PositionContainer>
+                )}
+                <PositionContainer>
+                    <Rating>
                         <Label
                             options={{
-                                size: 122,
-                                stroke: 2,
-                                offset: 5
-                            }}
-                            mobileOptions={{
-                                size: 56,
-                                stroke: 0.75,
+                                size: 48,
+                                stroke: 0.85,
                                 offset: 2.75
                             }}
-                        >{`${position}.`}</Label>
-                    </Position>
-                )}
-                <Rating>
-                    <Label
-                        options={{
-                            size: 48,
-                            stroke: 0.85,
-                            offset: 2.75
-                        }}
-                        mobileOptions={{
-                            size: 32,
-                            stroke: 0.75,
-                            offset: 2.15
-                        }}
-                    >{`${data.vote_average * 10}%`}</Label>
-                </Rating>
-                <Action>
-                    <Label
-                        options={{
-                            size: 82,
-                            stroke: 1.5,
-                            offset: 4.5
-                        }}
-                        mobileOptions={{
-                            size: 42,
-                            stroke: 0.75,
-                            offset: 2.5
-                        }}
-                    >
-                        ➜
-                    </Label>
-                </Action>
+                            mobileOptions={{
+                                size: 32,
+                                stroke: 0.75,
+                                offset: 2.15
+                            }}
+                        >{`${data.vote_average * 10}%`}</Label>
+                    </Rating>
+                </PositionContainer>
+                <PositionContainer>
+                    <Action>
+                        <Label
+                            options={{
+                                size: 82,
+                                stroke: 1.5,
+                                offset: 4.5
+                            }}
+                            mobileOptions={{
+                                size: 42,
+                                stroke: 0.75,
+                                offset: 2.5
+                            }}
+                        >
+                            ➜
+                        </Label>
+                    </Action>
+                </PositionContainer>
             </Container>
             <Title>{title}</Title>
         </Wrapper>

@@ -8,38 +8,44 @@ import waves from '../img/footer.svg';
 const Container = styled.footer`
     position: relative;
     height: 4rem;
+    width: 100%;
+    padding-bottom: 2rem;
+    border-bottom: 4rem solid rgb(var(--color-secondary));
 `;
 
 const ImageContainer = styled.div`
-    position: fixed;
-    bottom: -100%;
+    position: absolute;
     left: 0px;
     right: 0px;
+    bottom: 0px;
     width: 100vw;
+    height: 65vh;
     z-index: -1;
-    filter: brightness(0.85);
-    transform: translateZ(0) translateY(0);
+    transform: translate3d(0, 0, 0);
+    transition: 1ms;
+    overflow: hidden;
+    pointer-events: none;
 
     #waves {
+        position: relative;
         height: 100%;
-        width: 100vw;
-        margin-left: -0.25rem;
-        object-fit: cover;
-
-        @media (max-width: 960px) {
-            width: auto;
-        }
+        width: 100%;
+        filter: brightness(0.8);
     }
 `;
 
 interface FooterProps {}
 export const Footer: FunctionComponent<FooterProps> = ({}) => {
-    const [offset, setOffset] = useState(2000);
+    const [offset, setOffset] = useState(0);
+    const [height, setHeight] = useState(0);
 
     useScrollPosition(
         ({ currPos }) => {
+            setHeight(document.body.offsetHeight - window.innerHeight);
             setOffset(
-                document.body.scrollHeight + currPos.y - window.innerHeight
+                (document.body.offsetHeight -
+                    (document.body.scrollHeight + currPos.y)) /
+                    (document.body.offsetHeight - window.innerHeight)
             );
         },
         [offset]
@@ -50,10 +56,12 @@ export const Footer: FunctionComponent<FooterProps> = ({}) => {
             <Container></Container>
             <ImageContainer
                 style={{
-                    bottom: `-${offset * 0.35}px`
+                    transform: `translate3d(0px, -${
+                        height - height * offset - (200 - 200 * offset)
+                    }px, 0px)`
                 }}
             >
-                <Image id="waves" src={waves} alt="wavy background" />
+                <Image id="waves" src={waves} alt="wavy background" fill />
             </ImageContainer>
         </>
     );

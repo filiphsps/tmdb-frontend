@@ -1,3 +1,6 @@
+html {
+    max-width: 100vw;
+}
 body {
     --color-text: 30, 30, 30;
     --color-primary: 246, 42, 160;
@@ -8,9 +11,8 @@ body {
     --page-width: 1396px;
     --transition: 250ms ease-in-out;
 
-    overflow-x: hidden;
     min-height: 100vh;
-    width: 100%;
+    width: 100vw;
     max-width: 100vw;
     background: #20beb1;
     color: rgb(var(--color-text));

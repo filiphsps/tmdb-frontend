@@ -89,45 +89,42 @@ const Label = styled.div`
 `;
 
 const ImageContainer = styled.div`
-    position: fixed;
+    position: absolute;
     top: 0px;
     left: 0px;
     right: 0px;
     width: 100vw;
-    z-index: -1;
-    filter: brightness(0.85);
-    transform: translateZ(0) translateY(0);
+    height: 35rem;
+    z-index: -2;
+    transform: translate3d(0, 0, 0);
+    transition: 1ms;
+    overflow: hidden;
+    pointer-events: none;
 
     #waves {
+        position: relative;
         height: 100%;
-        width: 100vw;
-        margin-left: -0.25rem;
-        object-fit: cover;
-
-        @media (max-width: 960px) {
-            width: auto;
-        }
+        width: 100%;
+        filter: brightness(0.8);
     }
 `;
 
 const Container = styled.header`
     position: sticky;
     top: 0px;
-    z-index: 999;
+    z-index: 999999;
     display: grid;
     grid-template-columns: 1fr auto 1fr auto;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     height: 4rem;
-    width: 100%;
+    width: calc(100% - 2rem);
     max-width: var(--page-width);
     margin: 0px 0px 1rem 0px;
-    padding: 0px 1rem;
     transition: var(--transition);
 
     @media (max-width: 960px) {
-        //--color-blur-background: var(--color-secondary);
         height: 3rem;
     }
 
@@ -138,6 +135,8 @@ const Container = styled.header`
     ${({ opaque }: { opaque: boolean }) =>
         opaque
             ? css`
+                  padding: 0px 2rem;
+                  width: 100%;
                   background: rgb(var(--color-primary-light));
                   box-shadow: 0.25rem 0.25rem 0px 0px
                       rgb(var(--color-secondary));
@@ -153,17 +152,23 @@ const Container = styled.header`
 interface HeaderProps {}
 export const Header: FunctionComponent<HeaderProps> = ({}) => {
     const [offset, setOffset] = useState(0);
+    const [height, setHeight] = useState(0);
 
     useScrollPosition(
         ({ currPos }) => {
-            setOffset(currPos.y * -1);
+            setHeight(document.body.offsetHeight - window.innerHeight);
+            setOffset(
+                (document.body.offsetHeight -
+                    (document.body.scrollHeight + currPos.y)) /
+                    (document.body.offsetHeight - window.innerHeight)
+            );
         },
         [offset]
     );
 
     return (
         <>
-            <Container opaque={offset >= 45}>
+            <Container opaque={offset >= 0.005}>
                 <Line />
                 <Logo href="/">TMDb</Logo>
                 <Line />
@@ -177,10 +182,15 @@ export const Header: FunctionComponent<HeaderProps> = ({}) => {
             </Container>
             <ImageContainer
                 style={{
-                    top: `-${offset * 0.35}px`
+                    transform: `translate3d(0px, ${
+                        height * (offset * 0.75)
+                    }px, ${0}px) scale(${
+                        /*1 > 0.25 + offset ? 1 : 0.25 + offset*/ 1
+                    })`
+                    //height: `${25 + 15 * (1 - offset)}rem`
                 }}
             >
-                <Image id="waves" src={waves} alt="wavy background" />
+                <Image id="waves" src={waves} alt="wavy background" fill />
             </ImageContainer>
         </>
     );

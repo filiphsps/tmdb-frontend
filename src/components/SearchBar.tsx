@@ -33,10 +33,10 @@ const Input = styled.input`
     max-height: 100%;
     padding: 0px;
     border-radius: 0px;
-    background: #fefefe;
+    background: rgba(255, 255, 255, 0.85);
     font-size: 0.75rem;
     text-transform: uppercase;
-    border: 0.15rem solid #fefefe;
+    border: 0.15rem solid transparent;
 
     transition: var(--transition);
     @media (min-width: 960px) {
@@ -69,9 +69,11 @@ const Container = styled.div`
         height: 2.5rem;
     }
 
-    &:hover {
-        color: rgb(var(--color-primary));
-        background: rgb(var(--color-primary-light));
+    @media (min-width: 960px) {
+        &:hover {
+            color: rgb(var(--color-primary));
+            background: rgb(var(--color-primary-light));
+        }
     }
 
     ${({ active }: { active?: boolean }) =>

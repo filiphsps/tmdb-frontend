@@ -11,9 +11,13 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     position: relative;
-    background: #efefef;
+    background: linear-gradient(
+        215deg,
+        rgba(32, 32, 32, 1) 0%,
+        rgba(14, 14, 14, 1) 100%
+    );
     width: 100vw;
-    max-width: 100%;
+    max-width: 100vw;
 `;
 
 interface SiteContainerProps {

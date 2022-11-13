@@ -14,7 +14,10 @@ const ItemPage: FunctionComponent<ItemPageProps> = ({}) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    return { paths: [], fallback: 'blocking' };
+    return {
+        paths: [{ params: { type: 'movie', handle: 'test' } }],
+        fallback: false
+    };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {

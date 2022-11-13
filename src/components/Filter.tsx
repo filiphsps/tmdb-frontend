@@ -1,4 +1,8 @@
-import { HiOutlineFilter, HiSortDescending } from 'react-icons/hi';
+import {
+    HiOutlineFilter,
+    HiOutlineGlobeAlt,
+    HiSortDescending
+} from 'react-icons/hi';
 
 import { BiCategoryAlt } from 'react-icons/bi';
 import { FunctionComponent } from 'react';
@@ -7,8 +11,16 @@ import styled from 'styled-components';
 
 const Pills = styled.div`
     display: flex;
-    gap: 0rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     transition: var(--transition);
+
+    & > div {
+        gap: 0.25rem;
+    }
 
     @media (min-width: 960px) {
         & > div {
@@ -23,23 +35,17 @@ const Pills = styled.div`
     }
 
     @media (max-width: 960px) {
-        justify-content: flex-start;
-        align-items: flex-start;
-        align-content: flex-start;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-
         & > div {
             flex-grow: 1;
-            flex-basis: auto;
+            flex-basis: max-content;
             flex-direction: row;
-            font-size: 1rem;
+            font-size: 0.85rem;
             height: 2rem;
-            padding: 0.25rem;
-            gap: 0.25rem;
+            padding: 0.25rem 0.45rem;
 
             &:last-child {
                 flex-grow: 0;
+                padding: 0.25rem 0.5rem;
                 margin-right: auto;
             }
         }
@@ -49,7 +55,7 @@ const Pills = styled.div`
 const Container = styled.div`
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 1rem;
+    gap: 1.25rem;
     width: 100%;
     max-width: 100%;
     min-height: 2rem;
@@ -76,8 +82,7 @@ const FilterButton = styled.div`
 
     @media (min-width: 960px) {
         & > div {
-            height: 2rem;
-            padding: 0.25rem 0.75rem;
+            padding: 1rem;
             font-size: 1rem;
         }
     }
@@ -107,6 +112,14 @@ export const Filter: FunctionComponent<FilterProps> = ({}) => {
                 <Pill onClick={() => {}}>
                     <span>Family</span>
                     <BiCategoryAlt />
+                </Pill>
+                <Pill onClick={() => {}}>
+                    <span>Western</span>
+                    <BiCategoryAlt />
+                </Pill>
+                <Pill onClick={() => {}}>
+                    <span>Globally</span>
+                    <HiOutlineGlobeAlt />
                 </Pill>
             </Pills>
             <FilterButton>

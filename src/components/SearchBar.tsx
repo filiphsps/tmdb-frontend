@@ -105,13 +105,19 @@ const Container = styled.div`
 interface SearchBarProps {}
 export const SearchBar: FunctionComponent<SearchBarProps> = ({}) => {
     const [active, setActive] = useState(false);
-    const ref = useRef();
-    useOnClickOutside(ref, () => setActive(false));
+    const containerRef = useRef();
+    const inputRef = useRef();
+    useOnClickOutside(containerRef, () => setActive(false));
 
     return (
-        <Container ref={ref} active={active}>
-            <Input placeholder="search..." />
-            <Icon onClick={() => setActive(!active)}>
+        <Container ref={containerRef} active={active}>
+            <Input ref={inputRef} placeholder="search..." />
+            <Icon
+                onClick={() => {
+                    if (!active) (inputRef as any)?.current?.focus?.();
+                    setActive(!active);
+                }}
+            >
                 <HiSearch />
             </Icon>
         </Container>

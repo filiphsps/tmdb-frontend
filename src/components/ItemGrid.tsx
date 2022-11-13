@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Grid = styled.div`
     display: grid;
     gap: 2rem 1.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
     justify-content: center;
     align-items: center;
     max-width: 100%;

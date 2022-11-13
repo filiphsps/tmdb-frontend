@@ -11,6 +11,10 @@ const Pills = styled.div`
     transition: var(--transition);
 
     @media (min-width: 960px) {
+        & > div {
+            font-size: 1rem;
+            padding: 1rem;
+        }
         & > div:hover {
             background: rgb(var(--color-primary-light));
             box-shadow: 0.25rem 0.25rem 0px 0px rgb(var(--color-primary));
@@ -73,7 +77,7 @@ const FilterButton = styled.div`
     @media (min-width: 960px) {
         & > div {
             height: 2rem;
-            padding: 0.25rem;
+            padding: 0.25rem 0.75rem;
             font-size: 1rem;
         }
     }

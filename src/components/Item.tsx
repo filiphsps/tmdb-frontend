@@ -17,14 +17,14 @@ const Title = styled.div`
     height: 100%;
     padding: 0.5rem 0.15rem;
     color: rgb(var(--color-secondary));
-    text-shadow: -0.1rem -0.1rem 0 rgb(var(--color-primary)),
-        0 -0.1rem 0 rgb(var(--color-primary)),
-        0.1rem -0.1rem 0 rgb(var(--color-primary)),
-        0.1rem 0 0 rgb(var(--color-primary)),
-        0.1rem 0.1rem 0 rgb(var(--color-primary)),
-        0 0.1rem 0 rgb(var(--color-primary)),
-        -0.1rem 0.1rem 0 rgb(var(--color-primary)),
-        -0.1rem 0 0 rgb(var(--color-primary));
+    text-shadow: -0.125rem -0.125rem 0 rgb(var(--color-primary)),
+        0 -0.125rem 0 rgb(var(--color-primary)),
+        0.125rem -0.125rem 0 rgb(var(--color-primary)),
+        0.125rem 0 0 rgb(var(--color-primary)),
+        0.125rem 0.125rem 0 rgb(var(--color-primary)),
+        0 0.125rem 0 rgb(var(--color-primary)),
+        -0.125rem 0.125rem 0 rgb(var(--color-primary)),
+        -0.125rem 0 0 rgb(var(--color-primary));
     font-size: 1.25rem;
     font-weight: 700;
     overflow-wrap: break-word;

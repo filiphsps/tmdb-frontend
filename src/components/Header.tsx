@@ -1,24 +1,24 @@
 import { FunctionComponent, useState } from 'react';
+import styled, { css } from 'styled-components';
 
 import { HiMenuAlt3 } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SearchBar } from './SearchBar';
-import styled from 'styled-components';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import waves from '../img/header.svg';
 
 const Logo = styled(Link)`
     display: block;
     color: rgb(var(--color-secondary));
-    text-shadow: -0.1rem -0.1rem 0 rgb(var(--color-primary)),
-        0 -0.1rem 0 rgb(var(--color-primary)),
-        0.1rem -0.1rem 0 rgb(var(--color-primary)),
-        0.1rem 0 0 rgb(var(--color-primary)),
-        0.1rem 0.1rem 0 rgb(var(--color-primary)),
-        0 0.1rem 0 rgb(var(--color-primary)),
-        -0.1rem 0.1rem 0 rgb(var(--color-primary)),
-        -0.1rem 0 0 rgb(var(--color-primary)),
+    text-shadow: -0.125rem -0.125rem 0 rgb(var(--color-primary)),
+        0 -0.125rem 0 rgb(var(--color-primary)),
+        0.125rem -0.125rem 0 rgb(var(--color-primary)),
+        0.125rem 0 0 rgb(var(--color-primary)),
+        0.125rem 0.125rem 0 rgb(var(--color-primary)),
+        0 0.125rem 0 rgb(var(--color-primary)),
+        -0.125rem 0.125rem 0 rgb(var(--color-primary)),
+        -0.125rem 0 0 rgb(var(--color-primary)),
         0.25rem 0.25rem rgb(var(--color-primary));
     font-size: 2rem;
     font-weight: 500;
@@ -112,15 +112,20 @@ const ImageContainer = styled.div`
 `;
 
 const Container = styled.header`
+    position: sticky;
+    top: 0px;
+    z-index: 999;
     display: grid;
     grid-template-columns: 1fr auto 1fr auto;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     height: 4rem;
-    width: calc(100vw - 2rem);
+    width: 100%;
     max-width: var(--page-width);
-    margin: 0px auto 0.5rem auto;
+    margin: 0px 0px 1rem 0px;
+    padding: 0px 1rem;
+    transition: var(--transition);
 
     @media (max-width: 960px) {
         //--color-blur-background: var(--color-secondary);
@@ -130,6 +135,20 @@ const Container = styled.header`
     a {
         display: block;
     }
+
+    ${({ opaque }: { opaque: boolean }) =>
+        opaque
+            ? css`
+                  background: rgb(var(--color-primary-light));
+                  box-shadow: 0.25rem 0.25rem 0px 0px
+                      rgb(var(--color-secondary));
+
+                  @media (max-width: 960px) {
+                      box-shadow: 0px 0.25rem 0px 0px
+                          rgb(var(--color-secondary));
+                  }
+              `
+            : ''}
 `;
 
 interface HeaderProps {}
@@ -145,7 +164,7 @@ export const Header: FunctionComponent<HeaderProps> = ({}) => {
 
     return (
         <>
-            <Container>
+            <Container opaque={offset >= 45}>
                 <Line />
                 <Logo href="/">TMDb</Logo>
                 <Line />
@@ -159,7 +178,7 @@ export const Header: FunctionComponent<HeaderProps> = ({}) => {
             </Container>
             <ImageContainer
                 style={{
-                    transform: `translateY(-${offset * 0.35}px)`
+                    top: `-${offset * 0.35}px`
                 }}
             >
                 <Image id="waves" src={waves} alt="wavy background" />

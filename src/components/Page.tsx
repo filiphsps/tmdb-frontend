@@ -4,11 +4,9 @@ import styled from 'styled-components';
 
 const Container = styled.main`
     z-index: 99;
-    width: calc(100% - 2rem);
-    max-width: var(--page-width);
+    max-width: calc(100% - 2rem);
+    width: calc(var(--page-width) - 2rem);
     min-height: calc(100vh - 3rem);
-    padding: 0px;
-    margin: 0px auto;
 
     @media (min-width: 960px) {
         min-height: calc(100vh - 4rem);

@@ -12,14 +12,13 @@ const Container = styled.footer`
 
 const ImageContainer = styled.div`
     position: fixed;
-    bottom: 0px;
+    bottom: -100%;
     left: 0px;
     right: 0px;
     width: 100vw;
     z-index: -1;
-    filter: brightness(0.65);
-    transition: 00ms ease-out;
-    transform: translateY(0);
+    filter: brightness(0.85);
+    transform: translateZ(0) translateY(0);
 
     #waves {
         height: 100%;
@@ -35,7 +34,7 @@ const ImageContainer = styled.div`
 
 interface FooterProps {}
 export const Footer: FunctionComponent<FooterProps> = ({}) => {
-    const [offset, setOffset] = useState(0);
+    const [offset, setOffset] = useState(2000);
 
     useScrollPosition(
         ({ currPos }) => {
@@ -51,7 +50,7 @@ export const Footer: FunctionComponent<FooterProps> = ({}) => {
             <Container></Container>
             <ImageContainer
                 style={{
-                    transform: `translateY(${offset * 0.35}px)`
+                    bottom: `-${offset * 0.35}px`
                 }}
             >
                 <Image id="waves" src={waves} alt="wavy background" />

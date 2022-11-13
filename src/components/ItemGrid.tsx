@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Grid = styled.div`
     display: grid;
-    gap: 1rem;
+    gap: 2rem 1.5rem;
     grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
     justify-content: center;
     align-items: center;
@@ -12,6 +12,7 @@ const Grid = styled.div`
     margin-bottom: 1rem;
 
     @media (min-width: 960px) {
+        gap: 2rem 1rem;
         grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     }
 `;

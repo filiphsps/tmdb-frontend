@@ -7,33 +7,37 @@ import styled from 'styled-components';
 
 const Pills = styled.div`
     display: flex;
-    justify-content: flex-atart;
-    align-items: flex-start;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0rem;
+    transition: var(--transition);
 
     @media (min-width: 960px) {
-        gap: 1rem;
+        & > div:hover {
+            background: rgb(var(--color-primary-light));
+            box-shadow: 0.25rem 0.25rem 0px 0px rgb(var(--color-primary));
+            transform: none;
+        }
     }
 
-    & > div {
-        flex-grow: 1;
-        flex-basis: auto;
-        flex-direction: row;
-        font-size: 1rem;
-        height: 2rem;
-        padding: 0.25rem;
-        gap: 0.25rem;
+    @media (max-width: 960px) {
+        justify-content: flex-start;
+        align-items: flex-start;
+        align-content: flex-start;
+        flex-wrap: wrap;
+        gap: 0.5rem;
 
-        @media (min-width: 960px) {
-            padding: 0.5rem 0.75rem;
-            font-size: 1.25rem;
-        }
+        & > div {
+            flex-grow: 1;
+            flex-basis: auto;
+            flex-direction: row;
+            font-size: 1rem;
+            height: 2rem;
+            padding: 0.25rem;
+            gap: 0.25rem;
 
-        &:last-child {
-            flex-grow: 0;
-            margin-right: auto;
+            &:last-child {
+                flex-grow: 0;
+                margin-right: auto;
+            }
         }
     }
 `;
@@ -49,18 +53,29 @@ const Container = styled.div`
 `;
 const FilterButton = styled.div`
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 2.25rem;
-    margin: -0.15rem 0px 0px 0px;
-    height 7rem;
 
-    & > div {
-        height: 2rem;
-        width: 7rem;
-        transform: rotate(-90deg) translateX(calc(-50% + 0.85rem))
-            translateY(calc(-50% - 1rem));
-        box-shadow: -0.25rem 0.25rem 0px 0px rgb(var(--color-primary));
+    @media (max-width: 960px) {
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 2.25rem;
+        margin: -0.15rem 0px 0px 0px;
+        height: 7rem;
+
+        & > div {
+            height: 2rem;
+            width: 7rem;
+            transform: rotate(-90deg) translateX(calc(-50% + 0.85rem))
+                translateY(calc(-50% - 1rem));
+            box-shadow: -0.25rem 0.25rem 0px 0px rgb(var(--color-primary));
+        }
+    }
+
+    @media (min-width: 960px) {
+        & > div {
+            height: 2rem;
+            padding: 0.25rem;
+            font-size: 1rem;
+        }
     }
 `;
 
@@ -69,23 +84,23 @@ export const Filter: FunctionComponent<FilterProps> = ({}) => {
     return (
         <Container>
             <Pills>
-                <Pill>
+                <Pill onClick={() => {}}>
                     <span>Movies</span>
                     <HiOutlineFilter />
                 </Pill>
-                <Pill>
+                <Pill onClick={() => {}}>
                     <span>Popular</span>
                     <HiSortDescending />
                 </Pill>
-                <Pill>
+                <Pill onClick={() => {}}>
                     <span>Action</span>
                     <BiCategoryAlt />
                 </Pill>
-                <Pill>
+                <Pill onClick={() => {}}>
                     <span>Comedy</span>
                     <BiCategoryAlt />
                 </Pill>
-                <Pill>
+                <Pill onClick={() => {}}>
                     <span>Family</span>
                     <BiCategoryAlt />
                 </Pill>

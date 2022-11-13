@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Container = styled.main`
     z-index: 99;
-    width: calc(100vw - 2rem);
+    width: calc(100% - 2rem);
     max-width: var(--page-width);
     min-height: calc(100vh - 3rem);
     padding: 0px;

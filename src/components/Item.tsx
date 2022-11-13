@@ -10,17 +10,28 @@ import { useRouter } from 'next/router';
 const Title = styled.div`
     z-index: 1;
     overflow: hidden;
-    position: absolute;
-    top: 0px;
-    left: 0px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
     width: 100%;
     height: 100%;
-    padding: 0.45rem;
-    padding-right: 0.75rem;
+    padding: 0.5rem 0.15rem;
+    color: rgb(var(--color-secondary));
+    text-shadow: -0.1rem -0.1rem 0 rgb(var(--color-primary)),
+        0 -0.1rem 0 rgb(var(--color-primary)),
+        0.1rem -0.1rem 0 rgb(var(--color-primary)),
+        0.1rem 0 0 rgb(var(--color-primary)),
+        0.1rem 0.1rem 0 rgb(var(--color-primary)),
+        0 0.1rem 0 rgb(var(--color-primary)),
+        -0.1rem 0.1rem 0 rgb(var(--color-primary)),
+        -0.1rem 0 0 rgb(var(--color-primary));
+    font-size: 1.25rem;
+    font-weight: 700;
+    overflow-wrap: break-word;
     transition: var(--transition);
 
-    span {
-        overflow-wrap: break-word;
+    @media (min-width: 960px) {
+        font-size: 1.75rem;
     }
 `;
 const Content = styled.div`
@@ -31,7 +42,7 @@ const Content = styled.div`
     left: 0px;
     width: 100%;
     height: 100%;
-    padding: 0.75rem;
+    padding: 0.5rem;
     transition: var(--transition);
     transform: translateX(-100%);
 
@@ -183,6 +194,12 @@ const Label = styled(Text)`
     transition: var(--transition);
 `;
 
+const Wrapper = styled.div`
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+`;
+
 interface ItemProps {
     data: MovieResult;
     position?: number;
@@ -199,101 +216,88 @@ export const Item: FunctionComponent<ItemProps> = ({ data, position }) => {
     const excerptLength = 78;
 
     return (
-        <Container
-            ref={ref}
-            expanded={taps > 0}
-            onClick={() => {
-                if (taps == 1) router.push(href);
+        <Wrapper>
+            <Container
+                ref={ref}
+                expanded={taps > 0}
+                onClick={() => {
+                    if (taps == 1) router.push(href);
 
-                setTaps(taps + 1);
-            }}
-        >
-            <Title>
-                <Label
-                    options={{
-                        size: 48,
-                        stroke: 0.85,
-                        offset: 2.5
-                    }}
-                    mobileOptions={{
-                        size: 32,
-                        stroke: 0.55,
-                        offset: 2
-                    }}
-                >
-                    {title}
-                </Label>
-            </Title>
-            <Cover
-                width={65 * 150}
-                height={92 * 150}
-                src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
-                alt={title}
-            />
-            <Content>
-                <Label
-                    options={{
-                        size: 32,
-                        stroke: 0.65,
-                        offset: 1.5
-                    }}
-                    mobileOptions={{
-                        size: 21,
-                        stroke: 0,
-                        offset: 1.75
-                    }}
-                >
-                    {`${data.overview.substring(0, excerptLength)}${
-                        data.overview.length > excerptLength ? '...' : ''
-                    }`}
-                </Label>
-            </Content>
-            {position && (
-                <Position>
+                    setTaps(taps + 1);
+                }}
+            >
+                <Cover
+                    width={65 * 150}
+                    height={92 * 150}
+                    src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
+                    alt={title}
+                />
+                <Content>
                     <Label
                         options={{
-                            size: 122,
-                            stroke: 2,
-                            offset: 5
+                            size: 32,
+                            stroke: 0.65,
+                            offset: 1.5
                         }}
                         mobileOptions={{
-                            size: 52,
+                            size: 21,
+                            stroke: 0.65,
+                            offset: 1.5
+                        }}
+                    >
+                        {`${data.overview.substring(0, excerptLength)}${
+                            data.overview.length > excerptLength ? '...' : ''
+                        }`}
+                    </Label>
+                </Content>
+                {position && (
+                    <Position>
+                        <Label
+                            options={{
+                                size: 122,
+                                stroke: 2,
+                                offset: 5
+                            }}
+                            mobileOptions={{
+                                size: 56,
+                                stroke: 0.75,
+                                offset: 2.75
+                            }}
+                        >{`${position}.`}</Label>
+                    </Position>
+                )}
+                <Rating>
+                    <Label
+                        options={{
+                            size: 48,
+                            stroke: 0.85,
+                            offset: 2.75
+                        }}
+                        mobileOptions={{
+                            size: 32,
+                            stroke: 0.75,
+                            offset: 2.15
+                        }}
+                    >{`${data.vote_average * 10}%`}</Label>
+                </Rating>
+                <Action>
+                    <Label
+                        options={{
+                            size: 82,
+                            stroke: 1.5,
+                            offset: 4.5
+                        }}
+                        mobileOptions={{
+                            size: 42,
                             stroke: 0.75,
                             offset: 2.5
                         }}
-                    >{`${position}.`}</Label>
-                </Position>
-            )}
-            <Rating>
-                <Label
-                    options={{
-                        size: 48,
-                        stroke: 0.85,
-                        offset: 2.75
-                    }}
-                    mobileOptions={{
-                        size: 32,
-                        stroke: 0.75,
-                        offset: 2.15
-                    }}
-                >{`${data.vote_average * 10}%`}</Label>
-            </Rating>
-            <Action>
-                <Label
-                    options={{
-                        size: 82,
-                        stroke: 1.5,
-                        offset: 4.5
-                    }}
-                    mobileOptions={{
-                        size: 42,
-                        stroke: 0.75,
-                        offset: 2.5
-                    }}
-                >
-                    ➜
-                </Label>
-            </Action>
-        </Container>
+                    >
+                        ➜
+                    </Label>
+                </Action>
+            </Container>
+            <Title>{title}</Title>
+        </Wrapper>
     );
 };

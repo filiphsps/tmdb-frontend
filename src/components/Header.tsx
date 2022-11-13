@@ -4,13 +4,24 @@ import { HiMenuAlt3 } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SearchBar } from './SearchBar';
-import { Text } from './Text';
 import styled from 'styled-components';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import waves from '../img/header.svg';
 
 const Logo = styled(Link)`
     display: block;
+    color: rgb(var(--color-secondary));
+    text-shadow: -0.1rem -0.1rem 0 rgb(var(--color-primary)),
+        0 -0.1rem 0 rgb(var(--color-primary)),
+        0.1rem -0.1rem 0 rgb(var(--color-primary)),
+        0.1rem 0 0 rgb(var(--color-primary)),
+        0.1rem 0.1rem 0 rgb(var(--color-primary)),
+        0 0.1rem 0 rgb(var(--color-primary)),
+        -0.1rem 0.1rem 0 rgb(var(--color-primary)),
+        -0.1rem 0 0 rgb(var(--color-primary)),
+        0.25rem 0.25rem rgb(var(--color-primary));
+    font-size: 2rem;
+    font-weight: 500;
 `;
 
 const Line = styled.div`
@@ -84,7 +95,7 @@ const ImageContainer = styled.div`
     right: 0px;
     width: 100vw;
     z-index: -1;
-    filter: brightness(0.75);
+    filter: brightness(0.65);
     transition: 0ms ease-out;
     transform: translateZ(0) translateY(0);
 
@@ -112,7 +123,7 @@ const Container = styled.header`
     margin: 0px auto 0.5rem auto;
 
     @media (max-width: 960px) {
-        --color-blur-background: var(--color-secondary);
+        //--color-blur-background: var(--color-secondary);
         height: 3rem;
     }
 
@@ -136,22 +147,7 @@ export const Header: FunctionComponent<HeaderProps> = ({}) => {
         <>
             <Container>
                 <Line />
-                <Logo href="/">
-                    <Text
-                        options={{
-                            size: 52,
-                            stroke: 0.65,
-                            offset: 2.75
-                        }}
-                        mobileOptions={{
-                            size: 32,
-                            stroke: 0.65,
-                            offset: 2.35
-                        }}
-                    >
-                        TMDb
-                    </Text>
-                </Logo>
+                <Logo href="/">TMDb</Logo>
                 <Line />
                 <Actions>
                     <SearchBar />

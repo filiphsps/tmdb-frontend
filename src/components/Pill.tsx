@@ -14,6 +14,7 @@ const Container = styled.div`
     text-transform: uppercase;
     font-size: 1rem;
     font-weight: 700;
+    transition: var(--transition);
 
     svg {
         transform: scale(1.15);

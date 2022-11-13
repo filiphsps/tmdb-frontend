@@ -9,6 +9,7 @@ const Container = styled.div`
     position: relative;
     overflow-x: hidden;
     background: #efefef;
+    width: calc(100% - 1rem);
 `;
 
 interface SiteContainerProps {

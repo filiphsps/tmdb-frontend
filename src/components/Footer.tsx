@@ -17,8 +17,8 @@ const ImageContainer = styled.div`
     right: 0px;
     width: 100vw;
     z-index: -1;
-    filter: brightness(0.75);
-    transition: 100ms ease-out;
+    filter: brightness(0.65);
+    transition: 00ms ease-out;
     transform: translateY(0);
 
     #waves {

@@ -5,23 +5,12 @@ import { HiMenuAlt3 } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SearchBar } from './SearchBar';
+import { Text } from './Text';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import waves from '../img/header.svg';
 
 const Logo = styled(Link)`
     display: block;
-    color: rgb(var(--color-secondary));
-    text-shadow: -0.125rem -0.125rem 0 rgb(var(--color-primary)),
-        0 -0.125rem 0 rgb(var(--color-primary)),
-        0.125rem -0.125rem 0 rgb(var(--color-primary)),
-        0.125rem 0 0 rgb(var(--color-primary)),
-        0.125rem 0.125rem 0 rgb(var(--color-primary)),
-        0 0.125rem 0 rgb(var(--color-primary)),
-        -0.125rem 0.125rem 0 rgb(var(--color-primary)),
-        -0.125rem 0 0 rgb(var(--color-primary)),
-        0.25rem 0.25rem rgb(var(--color-primary));
-    font-size: 2rem;
-    font-weight: 500;
 `;
 
 const Line = styled.div`
@@ -105,7 +94,7 @@ const ImageContainer = styled.div`
         position: relative;
         height: 100%;
         width: 100%;
-        filter: brightness(0.8);
+        filter: brightness(0.75);
     }
 `;
 
@@ -170,7 +159,7 @@ export const Header: FunctionComponent<HeaderProps> = ({}) => {
         <>
             <Container opaque={offset >= 0.005}>
                 <Line />
-                <Logo href="/">TMDb</Logo>
+                <Logo href="/"><Text options={{size: 38, stroke: 1.25, offset: 2}}>TMDb</Text></Logo>
                 <Line />
                 <Actions>
                     <SearchBar />

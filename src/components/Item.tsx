@@ -304,13 +304,13 @@ export const Item: FunctionComponent<ItemProps> = ({ data, position }) => {
                             <Label
                                 options={{
                                     size: 122,
-                                    stroke: 2,
+                                    stroke: 2.5,
                                     offset: 5
                                 }}
                                 mobileOptions={{
-                                    size: 56,
-                                    stroke: 0.75,
-                                    offset: 2.75
+                                    size: 92,
+                                    stroke: 2,
+                                    offset: 3
                                 }}
                             >{`${position}.`}</Label>
                         </Position>

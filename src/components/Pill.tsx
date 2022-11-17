@@ -24,7 +24,15 @@ const Container = styled.div`
         font-size: 1.25rem;
     }
 
-    ${({ primary, clickable }: { primary?: boolean; clickable: boolean }) =>
+    ${({
+        primary,
+        clickable,
+        disabled
+    }: {
+        primary?: boolean;
+        clickable: boolean;
+        disabled?: boolean;
+    }) =>
         css`
             ${primary
                 ? css`
@@ -33,7 +41,15 @@ const Container = styled.div`
                   `
                 : ''}
 
-            ${clickable
+            ${disabled
+                ? css`
+                      background: #cfcfcf;
+                      color: #6f6f6f;
+                      opacity: 0.5;
+                  `
+                : ''}
+
+            ${!disabled && clickable
                 ? css`
                       cursor: pointer;
                       user-select: none;
@@ -54,17 +70,20 @@ interface PillProps {
     children: ReactNode;
     onClick?: () => void | Promise<void>;
     primary?: boolean;
+    disabled?: boolean;
 }
 export const Pill: FunctionComponent<PillProps> = ({
     children,
     onClick,
-    primary
+    primary,
+    disabled
 }) => {
     return (
         <Container
             onClick={onClick}
             primary={primary}
             clickable={onClick !== undefined}
+            disabled={disabled}
         >
             {children}
         </Container>

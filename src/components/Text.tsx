@@ -18,7 +18,7 @@ const String = styled.span`
     }) => {
         return css`
             font-size: ${options.size}px;
-            font-weight: 800;
+            //font-weight: 700;
 
             -webkit-text-stroke-width: ${options.stroke}px;
             -webkit-text-stroke-color: rgb(var(--color-stroke));

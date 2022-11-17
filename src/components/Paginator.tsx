@@ -1,3 +1,5 @@
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
+
 import { FunctionComponent } from 'react';
 import { Pill } from './Pill';
 import styled from 'styled-components';
@@ -20,13 +22,18 @@ const Container = styled.nav`
     max-width: 100%;
     padding: 1rem;
     background: rgb(var(--color-primary-light));
-    & > div,
-    ${Pages} > div {
-        background: rgb(var(--color-secondary));
+
+    svg {
+        width: 2rem;
+        height: 2rem;
+        font-size: 2rem;
+        background: red;
+        color: blue;
     }
 
     & > div {
         padding: 1rem;
+        //font-size: 2rem;
     }
     ${Pages} > div {
         padding: 1rem 0.75rem;
@@ -56,13 +63,21 @@ export const Paginator: FunctionComponent<PaginatorProps> = ({
 }) => {
     return (
         <Container>
-            {onPrev ? <Pill onClick={onPrev}>Back</Pill> : <section />}
+            <Pill disabled={onPrev == undefined || page <= 1} onClick={onPrev}>
+                <GrFormPrevious />
+                <span>Prev</span>
+            </Pill>
+
             <Pages>
                 {page > 1 && <Pill onClick={() => {}}>{1}</Pill>}
                 <Pill onClick={() => {}}>{page}</Pill>
                 <Pill onClick={() => {}}>{totalPages}</Pill>
             </Pages>
-            {onNext ? <Pill onClick={onNext}>Next</Pill> : <section />}
+
+            <Pill disabled={onNext == undefined} onClick={onNext}>
+                <span>Next</span>
+                <GrFormNext />
+            </Pill>
         </Container>
     );
 };
